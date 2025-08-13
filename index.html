@@ -1,463 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Global Online Business Planner</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    .card { @apply border rounded-2xl shadow-sm bg-white; }
-    .btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-2xl border text-sm; }
-    .btn-primary { @apply bg-black text-white border-black; }
-    .btn-outline { @apply bg-white text-gray-900; }
-    .badge { @apply inline-flex items-center px-2 py-0.5 rounded-full border text-xs; }
-    .muted { @apply text-gray-500; }
-    .tab-active { @apply border-b-2 border-black text-black; }
-  </style>
-  <!-- React via CDN + Babel for JSX in-browser -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Dream Project</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+    }
+    header {
+        background: white;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    header h1 {
+        font-size: 2rem;
+        margin: 0;
+    }
+    section {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    h2 {
+        color: #222;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+    }
+    ul {
+        padding-left: 1.2rem;
+    }
+    .jina-message {
+        margin-top: 4rem;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        font-family: 'Brush Script MT', cursive;
+        font-size: 1.8rem;
+        color: #444;
+        background: white url('https://www.transparenttextures.com/patterns/white-wall-3.png');
+        background-size: cover;
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 2s ease, transform 2s ease;
+    }
+    .jina-message.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .heart {
+        color: red;
+        font-size: 1.4rem;
+        vertical-align: middle;
+    }
+</style>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-white to-gray-50">
-  <div id="root"></div>
+<body>
+<header>
+    <h1>Our Dream Project — Business Plans</h1>
+</header>
 
-  <script type="text/babel">
-    const { useState } = React;
+<section>
+    <h2>Plan 1: Online Agency</h2>
+    <ul>
+        <li>Service: Social media management, copywriting, or virtual assistance for US/global clients.</li>
+        <li>Target: Small businesses, startups, or entrepreneurs.</li>
+        <li>Startup Cost: $100–$200 for website, branding, and marketing tools.</li>
+        <li>Growth Potential: Scale with subcontractors once demand increases.</li>
+    </ul>
+</section>
 
-    const Section = ({ title, description, children }) => (
-      <div className="card">
-        <div className="p-5 md:p-6 border-b">
-          <h3 className="text-xl font-semibold">{title}</h3>
-          {description && <p className="muted mt-1">{description}</p>}
-        </div>
-        <div className="p-5 md:p-6 space-y-4">{children}</div>
-      </div>
-    );
+<section>
+    <h2>Plan 2: E-Commerce Store</h2>
+    <ul>
+        <li>Model: Dropshipping or print-on-demand.</li>
+        <li>Target Market: US and worldwide (niche products with high demand).</li>
+        <li>Startup Cost: $200–$300 for store setup, ads, and product research.</li>
+        <li>Growth Potential: Expand to own branded products once sales grow.</li>
+    </ul>
+</section>
 
-    const Stat = ({ label, value, hint }) => (
-      <div className="flex items-start gap-3">
-        <div className="p-2 rounded-xl border">📊</div>
-        <div>
-          <div className="text-xs uppercase tracking-wide muted">{label}</div>
-          <div className="text-lg font-semibold">{value}</div>
-          {hint && <div className="text-xs muted">{hint}</div>}
-        </div>
-      </div>
-    );
+<section>
+    <h2>Plan 3: Lead Generation Business</h2>
+    <ul>
+        <li>Service: Finding and delivering high-quality leads to businesses in specific industries.</li>
+        <li>Target Market: Real estate agents, home service providers, and B2B companies.</li>
+        <li>Startup Cost: $50–$150 for tools and CRM.</li>
+        <li>Growth Potential: Charge per lead or on a monthly retainer basis.</li>
+    </ul>
+</section>
 
-    const List = ({ items }) => (
-      <ul className="list-disc pl-6 space-y-2">
-        {items.map((it, i) => <li className="leading-relaxed" key={i}>{it}</li>)}
-      </ul>
-    );
+<section class="jina-message" id="jinaMessage">
+    Hey, this will be ours and we will do it. I trust you, Jina, and we are in this together. — Joe <span class="heart">❤️</span>
+</section>
 
-    const plans = {
-      agency: {
-        name: "Online Agency",
-        emoji: "🚀",
-        summary: "Fastest path to reliable cash flow by selling monthly services to US clients.",
-        who: [
-          "Excellent English & communication",
-          "Comfortable with outreach and client calls",
-          "Want income within weeks, not months",
-        ],
-        services: [
-          "Social Media Management (SMB / Realtors)",
-          "Virtual Assistant (founders/coaches)",
-          "Email Marketing & Newsletters",
-          "Customer Support (ecom brands)",
-          "Lead Gen via cold email / LinkedIn",
-        ],
-        setup: [
-          "Brand name + one-page site (headline, services, samples, contact)",
-          "Canva for visuals, Google Workspace, Trello/Asana, Zoom",
-          "Create 3–4 sample case studies (mock work is fine to start)",
-        ],
-        pricing: [
-          "Starter: $200–300/mo per client",
-          "Goal: 5 clients = $1,000–1,500/mo",
-          "Upsell: Strategy + Ads + Reporting ($500–800/mo)",
-        ],
-        acquisition: [
-          "100 cold emails/wk to a single niche (e.g., US Realtors)",
-          "Upwork/Fiverr: apply to 5–10 gigs daily",
-          "LinkedIn: 20–30 connects/wk + short value messages",
-          "Offer a 7-day pilot at a reduced rate to close first clients",
-        ],
-        scripts: {
-          coldEmail:
-`Subject: Quick help with your [channel] – 10-min?
-
-Hi [Name],
-I noticed [specific observation]. We help [niche] get more [leads/sales] with [service].
-Typical result in 30–60 days: [credible outcome].
-Open to a 10-minute chat this week?
-– Youssef`,
-          dm:
-`Hey [Name] — loved your recent post on [topic]. I help [niche] with [service]. If I sent 3 quick ideas tailored to your brand, would you want them?`
-        },
-        kpis: [
-          "Outreach sent / replies / booked calls / closes",
-          "Client retention (months)",
-          "Time per client per week",
-        ],
-        timeline: [
-          { week: "Week 1", tasks: [
-            "Pick 1 niche + 1 core service",
-            "Set up domain + simple site + email",
-            "Create 3 sample projects (image carousels, captions, email templates)",
-            "Draft 2 outreach scripts (email + DM)",
-          ]},
-          { week: "Week 2", tasks: [
-            "Send 100 cold emails (10/day)",
-            "Apply to 30 gigs on Upwork/Fiverr",
-            "Hold first 3 discovery calls (use checklist)",
-          ]},
-          { week: "Week 3", tasks: [
-            "Close 1–2 clients on 7-day pilot",
-            "Build tracking sheet (tasks, deadlines, KPIs)",
-            "Collect testimonials/screenshots",
-          ]},
-          { week: "Week 4–6", tasks: [
-            "Raise price to $300–400/mo",
-            "Hit 4–5 clients; document SOPs",
-            "Hire part-time freelancer for production",
-          ]},
-        ],
-        budget: { low: "$100–200 initial (domain, tools)", run: "$0–$50/mo tools (email, Canva Pro optional)" }
-      },
-      ecommerce: {
-        name: "E-commerce (POD/Dropship)",
-        emoji: "🛍️",
-        summary: "Product business selling to US customers without holding inventory.",
-        who: [
-          "Comfortable with testing products and creative marketing",
-          "Okay with 4–8 weeks to find a winner",
-          "Want scalable, semi-passive income",
-        ],
-        models: [
-          "Print-on-Demand (Printify/Printful on Shopify/Etsy)",
-          "Dropshipping via US suppliers (Spocket/Zendrop)",
-        ],
-        research: [
-          "Etsy/Pinterest/TikTok trends; Amazon Movers & Shakers",
-          "Look for passionate sub-niches (nurses, dog moms, teachers)",
-          "Avoid generic; find angles with emotion or identity",
-        ],
-        setup: [
-          "Shopify store + domain + 10 SKUs",
-          "US-based suppliers for 3–7 day delivery",
-          "Policies, FAQ, trust badges, clear returns",
-        ],
-        marketing: [
-          "Organic: 1–2 TikTok/IG Reels daily (behind-the-scenes, memes, UGC)",
-          "Paid: $5–10/day on TikTok/Facebook testing 2–3 products",
-          "Retargeting once 50+ add-to-carts",
-        ],
-        kpis: [
-          "CTR, ATC rate, Purchase ROAS, AOV",
-          "Cost per acquisition vs. margin",
-          "Refund/chargeback rate",
-        ],
-        timeline: [
-          { week: "Week 1", tasks: [
-            "Decide model + niche; secure domain",
-            "Create 15 designs (POD) or shortlist 10 products (dropship)",
-            "Build product pages with strong benefits/copy",
-          ]},
-          { week: "Week 2", tasks: [
-            "Launch store with 10 SKUs",
-            "Post 10 short-form videos",
-            "Start $10/day ads testing 2 products",
-          ]},
-          { week: "Week 3", tasks: [
-            "Kill losers; scale best performer",
-            "Add 5 variants + bundles; enable email capture",
-          ]},
-          { week: "Week 4–6", tasks: [
-            "Introduce retargeting + lookalikes",
-            "Negotiate better supplier rates",
-            "Hire VA for support once >20 orders/week",
-          ]},
-        ],
-        budget: { low: "$300–500 initial (Shopify, samples, test ads)", run: "$39/mo Shopify + ad spend" }
-      },
-      leadgen: {
-        name: "Lead Generation Business",
-        emoji: "🔗",
-        summary: "Build mini sites & assets that rank or run paid capture, then sell the leads to local US businesses.",
-        who: [
-          "Okay with SEO/landing pages or outbound",
-          "Prefer recurring, semi-passive revenue",
-          "Don’t mind building before payoff (4–12 weeks)",
-        ],
-        models: [
-          "Rank-and-Rent: SEO micro-sites for local services (plumbers, cleaners)",
-          "Paid Capture: Simple PPC → landing page → sell leads",
-          "Outbound: Cold email + Calendly booking for clients (you keep fee per booked call)",
-        ],
-        setup: [
-          "Pick 1 city + 1 service (e.g., ‘Tampa carpet cleaning’)",
-          "Buy domain; build fast landing page (FAQs, reviews, CTA)",
-          "Tracking: call forwarding number + form capture to sheet",
-        ],
-        pricing: [
-          "$20–60 per exclusive lead (home services)",
-          "$200–600/mo flat for rank-and-rent",
-          "$50–150 per booked call (B2B)",
-        ],
-        acquisition: [
-          "Scrape 100 local businesses; email pitch to buy leads",
-          "Offer free 3-lead trial to prove quality",
-          "Close 2–3 buyers per niche/city",
-        ],
-        kpis: [
-          "Leads/mo, cost per lead, close rate by buyer",
-          "Site rank, conversion rate, call duration",
-        ],
-        timeline: [
-          { week: "Week 1", tasks: [
-            "Pick 2 niches × 2 cities; buy domains",
-            "Build 2 landing pages + tracking numbers",
-          ]},
-          { week: "Week 2", tasks: [
-            "Start basic SEO (citations, GMB if possible)",
-            "Run small PPC test ($5–10/day) to produce first leads",
-          ]},
-          { week: "Week 3", tasks: [
-            "Prospect 100 local businesses; offer 3 free leads",
-            "Close 1–2 buyers; set per-lead pricing",
-          ]},
-          { week: "Week 4–6", tasks: [
-            "Scale to 30–60 leads/mo per site",
-            "Add second city or second service",
-          ]},
-        ],
-        budget: { low: "$150–400 initial (domains, builder, call tracking, small ads)", run: "$20–100/mo + optional PPC" }
-      }
-    };
-
-    const compareRows = [
-      { label: "Startup Cost", agency: "$100–200", ecommerce: "$300–500", leadgen: "$150–400" },
-      { label: "Time to First Revenue", agency: "2–6 weeks", ecommerce: "4–8 weeks", leadgen: "3–8 weeks" },
-      { label: "Risk Level", agency: "Low", ecommerce: "Medium", leadgen: "Medium-Low" },
-      { label: "Effort / Ongoing", agency: "High (client work)", ecommerce: "Medium (ops + ads)", leadgen: "Medium (optimize + sell)" },
-      { label: "Scalability", agency: "Team + SOPs", ecommerce: "Ads + products", leadgen: "More cities/niches" },
-      { label: "Passive Potential", agency: "Low", ecommerce: "Medium-High", leadgen: "High (rank-and-rent)" },
-    ];
-
-    function PlanTab({ data }) {
-      return (
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <div className="xl:col-span-2 space-y-6">
-            <Section title={`${data.emoji} Overview`} description={data.summary}>
-              <div className="grid sm:grid-cols-3 gap-4">
-                <Stat label="Best For" value={<span>{data.who[0]}</span>} hint={data.who.slice(1).join(" • ")} />
-                <Stat label="Budget" value={data.budget.low} hint={data.budget.run} />
-                <Stat label="Scale Path" value="See timeline" hint="Add help once traction" />
-              </div>
-            </Section>
-
-            {data.services && (
-              <Section title="Core Offers" description="Pick one to start; add more later.">
-                <List items={data.services} />
-              </Section>
-            )}
-
-            {data.models && (
-              <Section title="Business Models">
-                <List items={data.models} />
-              </Section>
-            )}
-
-            <Section title="Setup Checklist">
-              <List items={data.setup} />
-            </Section>
-
-            {data.pricing && (
-              <Section title="Pricing & Packaging">
-                <List items={data.pricing} />
-              </Section>
-            )}
-
-            {data.marketing && (
-              <Section title="Marketing Plan">
-                <List items={data.marketing} />
-              </Section>
-            )}
-
-            {data.acquisition && (
-              <Section title="Client Acquisition">
-                <List items={data.acquisition} />
-              </Section>
-            )}
-
-            {data.scripts && (
-              <Section title="Outreach Scripts">
-                <details className="border rounded-2xl p-3">
-                  <summary className="cursor-pointer font-medium">Show Scripts</summary>
-                  <pre className="whitespace-pre-wrap text-sm bg-gray-50 p-3 rounded-xl border mt-3">{data.scripts.coldEmail}</pre>
-                  <pre className="whitespace-pre-wrap text-sm bg-gray-50 p-3 rounded-xl border mt-3">{data.scripts.dm}</pre>
-                </details>
-              </Section>
-            )}
-
-            <Section title="90-Day Timeline">
-              <div className="grid md:grid-cols-2 gap-4">
-                {data.timeline.map((t, idx) => (
-                  <div key={idx} className="card">
-                    <div className="p-4 border-b"><div className="text-base font-semibold">{t.week}</div></div>
-                    <div className="p-4"><List items={t.tasks} /></div>
-                  </div>
-                ))}
-              </div>
-            </Section>
-
-            <Section title="KPIs to Track">
-              <List items={data.kpis} />
-            </Section>
-          </div>
-
-          <div className="space-y-6">
-            <Section title="Quick Actions">
-              <div className="flex flex-col gap-2">
-                <button className="btn btn-outline justify-start" onclick="window.print()">🖨️ Print / Save as PDF</button>
-                <button className="btn btn-outline justify-start" onclick="navigator.clipboard.writeText(window.location.href)">🔗 Copy Share Link</button>
-              </div>
-            </Section>
-
-            <Section title="Mini Playbooks">
-              <details className="border rounded-2xl p-3">
-                <summary className="cursor-pointer font-medium">Discovery Call Checklist</summary>
-                <div className="mt-3">
-                  <List items={[
-                    "Goals & current metrics",
-                    "Audience & offers",
-                    "Budget & timeline",
-                    "Decision maker & next step",
-                  ]} />
-                </div>
-              </details>
-              <details className="border rounded-2xl p-3">
-                <summary className="cursor-pointer font-medium">Simple Reporting Template</summary>
-                <div className="mt-3">
-                  <List items={[
-                    "This month’s goals vs. results",
-                    "Top wins + losses",
-                    "Next month action plan",
-                  ]} />
-                </div>
-              </details>
-            </Section>
-          </div>
-        </div>
-      );
-    }
-
-    function App() {
-      const [tab, setTab] = useState("agency");
-      const [currencyUSD, setCurrencyUSD] = useState(true);
-      const [monthlyAdBudget, setMonthlyAdBudget] = useState(150);
-
-      return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <header className="mb-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Global Online Business Planner</h1>
-                <p className="muted mt-1">Built for Youssef — clean, practical, and ready to execute today.</p>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-3">
-                  <label htmlFor="currency" className="text-sm">Currency</label>
-                  <input id="currency" type="checkbox" checked={currencyUSD} onChange={(e)=>setCurrencyUSD(e.target.checked)} />
-                  <span className="badge">{currencyUSD ? "USD" : "EGP"}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <label htmlFor="adBudget" className="text-sm">Monthly Test Ads</label>
-                  <input id="adBudget" type="number" className="w-24 border rounded px-2 py-1" value={monthlyAdBudget}
-                    onChange={(e)=>setMonthlyAdBudget(Number(e.target.value||0))} />
-                  <span className="badge">{currencyUSD ? "USD" : "EGP"} {monthlyAdBudget}</span>
-                </div>
-                <button className="btn btn-primary" onclick="window.print()">⬇️ Export PDF</button>
-              </div>
-            </div>
-          </header>
-
-          <div className="card mb-8">
-            <div className="p-6 grid md:grid-cols-3 gap-6">
-              <Stat label="You want" value="Reliable + online" hint="US / worldwide markets" />
-              <Stat label="Starting salary base" value="$400/mo combined" hint="Invest smart, not heavy" />
-              <Stat label="Two tracks" value="Services + Products" hint="Run in parallel if desired" />
-            </div>
-          </div>
-
-          <div className="space-y-8">
-            <div className="border-b flex gap-6">
-              {["agency","ecommerce","leadgen"].map(key => (
-                <button key={key}
-                  className={"py-2 -mb-px " + (tab===key ? "tab-active" : "text-gray-500")}
-                  onClick={()=>setTab(key)}>
-                  {key==="agency" && "🚀 Agency"}
-                  {key==="ecommerce" && "🛍️ E-commerce"}
-                  {key==="leadgen" && "🔗 Lead Gen"}
-                </button>
-              ))}
-            </div>
-
-            {tab==="agency" && <PlanTab data={plans.agency} />}
-            {tab==="ecommerce" && <PlanTab data={plans.ecommerce} />}
-            {tab==="leadgen" && <PlanTab data={plans.leadgen} />}
-          </div>
-
-          <div className="my-10" />
-
-          <Section title="Side-by-Side Reality Check" description="Compare the three models at a glance.">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left">
-                    <th className="p-3 font-semibold text-gray-500">Factor</th>
-                    <th className="p-3 font-semibold">🚀 Agency</th>
-                    <th className="p-3 font-semibold">🛍️ E-commerce</th>
-                    <th className="p-3 font-semibold">🔗 Lead Gen</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {compareRows.map((r, i) => (
-                    <tr key={i} className="border-t">
-                      <td className="p-3 text-gray-500">{r.label}</td>
-                      <td className="p-3">{r.agency}</td>
-                      <td className="p-3">{r.ecommerce}</td>
-                      <td className="p-3">{r.leadgen}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Section>
-
-          <div className="mt-8">
-            <Section title="Special Message ❤️" description="A note to close the chapter together.">
-              <p className="leading-relaxed text-base">
-                Hey — this will be ours and we will do it. I trust you, Jina. We’re in this together. — Joe
-              </p>
-            </Section>
-          </div>
-
-          <footer className="py-12 text-center text-xs text-gray-500">
-            Built with ❤️ — print this page to save a PDF and share it.          </footer>
-        </div>
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+<script>
+    window.addEventListener('scroll', function() {
+        const jinaSection = document.getElementById('jinaMessage');
+        const rect = jinaSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+            jinaSection.classList.add('visible');
+        }
+    });
+</script>
 </body>
 </html>
